@@ -53,6 +53,14 @@ Spec::Rake::SpecTask.new do |t|
   t.spec_files = FileList["spec/**/*_spec.rb"]
 end
 
+desc "Run unit specs with rcov"
+Spec::Rake::SpecTask.new('spec_with_rcov') do |t|
+  t.spec_opts  = ["--format", "specdoc", "--colour"]
+  t.spec_files = FileList["spec/**/*_spec.rb"]
+  t.rcov       = true
+  t.rcov_opts  = ["--exclude 'spec|gems'"]
+end
+
 desc 'Generate RDoc documentation'
 Rake::RDocTask.new do |rd|
   rd.title = spec.name
